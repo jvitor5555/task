@@ -1,9 +1,6 @@
 const { Sequelize } = require('sequelize');
 
 require('dotenv').config();
-
-const User = require('../models/user');
-const Task = require('../models/task');
  
 const sequelize = new Sequelize(
     process.env.DB_NAME,
@@ -14,11 +11,17 @@ const sequelize = new Sequelize(
     }
 );
 
+console.log('Instância do Sequelize criada:', typeof sequelize); // Deve mostrar "object"
+
+
 async function conectarBanco() {
     
     try {
         await sequelize.authenticate(); // authenticate() - testa se a conexão com o bd está funcionando
         console.log("Conexão com o banco de dados realizada com Sucesso")
+
+        await sequelize.sync({ force: true });
+        console.log("Apagando tabelas e Recriando...")
 
         await sequelize.sync();
         console.log("Tabelas Criadas com Sucesso")

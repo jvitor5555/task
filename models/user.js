@@ -1,8 +1,7 @@
 const { DataTypes } = require('sequelize'); // tipos de dados do sequelize
 const { sequelize } = require('../config/config'); // estância do sequelize
-const Task = require('../models/task');
 
-const User = sequelize.define('User', {
+const User = sequelize.define('User', { // o Sequelize por padrão pluraliza as tabelas e usa mínusculas - users
 
     id: {
         type: DataTypes.INTEGER,
@@ -24,7 +23,7 @@ const User = sequelize.define('User', {
         }
     },
 
-    senha:{
+    password:{
         type: DataTypes.STRING,
         allowNull:false,
     },
@@ -37,7 +36,5 @@ const User = sequelize.define('User', {
 }, {
     timestamps: false // evita a criação automatica de campos
 });
-
-User.hasMany(Task, { foreignKey: 'userId' }); // um usuário possui várias tasks
 
 module.exports = User;

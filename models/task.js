@@ -1,8 +1,7 @@
 const { DataTypes } = require('sequelize');
 const { sequelize } = require('../config/config');
-const User = require('./user');
 
-const Task = sequelize.define('Task', {
+const Task = sequelize.define('Task', { // o Sequelize por padrão pluraliza as tabelas e usa mínusculas - tasks
     id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
@@ -23,14 +22,12 @@ const Task = sequelize.define('Task', {
     userId: {
         type: DataTypes.INTEGER,
         references: {
-            model: User,
+            model: 'users',
             key: 'id'
         }
     }
 }, {
     timestamps: false
 });
-
-Task.belongsTo(User, { foreignKey: 'userId' }); // cada tarefa pertence a um user
 
 module.exports = Task;
