@@ -7,12 +7,10 @@ const sequelize = new Sequelize(
     process.env.DB_USER,
     process.env.DB_PASSWORD, {
         host: process.env.DB_HOST,
-        dialect: 'mysql'
+        dialect: 'postgres',
+        logging: false
     }
 );
-
-console.log('Instância do Sequelize criada:', typeof sequelize); // Deve mostrar "object"
-
 
 async function conectarBanco() {
     
