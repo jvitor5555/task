@@ -22,7 +22,7 @@ const Task = sequelize.define('Task', { // o Sequelize por padrão pluraliza as 
     userId: {
         type: DataTypes.INTEGER,
         references: {
-            model: 'users',
+            model: 'Users',
             key: 'id'
         }
     }
